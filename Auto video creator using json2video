@@ -1,0 +1,785 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -3232,
+        752
+      ],
+      "id": "eddcabc9-25ed-43ff-b6d4-b841d28d3735",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -2960,
+        976
+      ],
+      "id": "c03831b0-1ad4-43b0-8f82-6d4c1716419d",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "pasa3vbtbWhJXPxY",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "[\n{\n\"scene_id\": 1,\n\"voice_text\": \"Millions of years ago, dinosaurs began their reign on Earth, shaping ecosystems across ancient continents.\",\n\"image_prompt\": \"cinematic golden sunset, epic landscapes, a towering T-Rex with vibrant scar patterns standing on a rocky cliff overlooking prehistoric forests\",\n\"topic_focus\": \"prehistoric introduction\",\n\"audio_style\": \"epic and suspenseful\"\n},\n{\n\"scene_id\": 2,\n\"voice_text\": \"These magnificent creatures came in all shapes and sizes, from massive predators to peaceful giants.\",\n\"image_prompt\": \"lush prehistoric jungle, giant Brachiosaurus reaching treetop leaves while smaller dinosaurs roam the forest floor\",\n\"topic_focus\": \"diversity of dinosaurs\",\n\"audio_style\": \"informative and inspiring\"\n},\n{\n\"scene_id\": 3,\n\"voice_text\": \"Today we travel back in time to uncover how these incredible animals ruled the ancient world.\",\n\"image_prompt\": \"wide cinematic shot of dinosaurs roaming endless plains beneath a fiery orange prehistoric sky\",\n\"topic_focus\": \"journey setup\",\n\"audio_style\": \"dramatic and inviting\"\n},\n{\n\"scene_id\": 4,\n\"voice_text\": \"Towering above forests and rivers, the mighty Brachiosaurus used its long neck to reach the highest leaves.\",\n\"image_prompt\": \"majestic Brachiosaurus walking through misty jungle valley, sunlight streaming through towering ancient trees\",\n\"topic_focus\": \"brachiosaurus lifestyle\",\n\"audio_style\": \"calm and educational\"\n},\n{\n\"scene_id\": 5,\n\"voice_text\": \"But not all dinosaurs were peaceful. Some were born hunters with powerful jaws and razor sharp teeth.\",\n\"image_prompt\": \"dramatic jungle clearing where a fierce T-Rex stalks prey through dense fog and towering ferns\",\n\"topic_focus\": \"predatory dinosaurs\",\n\"audio_style\": \"tense and thrilling\"\n},\n{\n\"scene_id\": 6,\n\"voice_text\": \"Among the smartest hunters were Velociraptors, agile predators that hunted with strategy and teamwork.\",\n\"image_prompt\": \"pack of Velociraptors moving stealthily through tall grass under moonlit prehistoric night\",\n\"topic_focus\": \"raptor hunting behavior\",\n\"audio_style\": \"suspenseful and intense\"\n},\n{\n\"scene_id\": 7,\n\"voice_text\": \"In open plains, massive herds of plant eating dinosaurs migrated together for safety and food.\",\n\"image_prompt\": \"wide cinematic herd of Triceratops and Hadrosaurs walking across dusty plains at sunrise\",\n\"topic_focus\": \"herd migration\",\n\"audio_style\": \"grand and documentary\"\n},\n{\n\"scene_id\": 8,\n\"voice_text\": \"Defensive dinosaurs evolved incredible armor and horns to protect themselves from hungry predators.\",\n\"image_prompt\": \"close cinematic shot of a powerful Triceratops lowering its horns while a predator lurks nearby\",\n\"topic_focus\": \"dinosaur defense\",\n\"audio_style\": \"dramatic and intense\"\n},\n{\n\"scene_id\": 9,\n\"voice_text\": \"Far beyond the forests and plains, the ancient oceans hid monsters even larger than land predators.\",\n\"image_prompt\": \"deep ocean prehistoric scene with a massive Mosasaurus swimming through dark blue waters\",\n\"topic_focus\": \"marine reptiles\",\n\"audio_style\": \"mysterious and epic\"\n},\n{\n\"scene_id\": 10,\n\"voice_text\": \"These underwater giants ruled the seas just as fiercely as the dinosaurs ruled the land.\",\n\"image_prompt\": \"cinematic underwater battle scene with Mosasaurus chasing schools of fish through ancient ocean currents\",\n\"topic_focus\": \"ocean dominance\",\n\"audio_style\": \"epic and thrilling\"\n},\n{\n\"scene_id\": 11,\n\"voice_text\": \"For millions of years this incredible world thrived, filled with giants, hunters, and survivors.\",\n\"image_prompt\": \"wide panoramic view of diverse dinosaurs roaming forests, rivers, and plains under golden sunlight\",\n\"topic_focus\": \"peak dinosaur era\",\n\"audio_style\": \"grand and reflective\"\n},\n{\n\"scene_id\": 12,\n\"voice_text\": \"But eventually, dramatic changes began to reshape the world they once ruled.\",\n\"image_prompt\": \"dark dramatic sky over prehistoric landscape as fiery meteors streak across the horizon\",\n\"topic_focus\": \"approaching extinction\",\n\"audio_style\": \"ominous and suspenseful\"\n},\n{\n\"scene_id\": 13,\n\"voice_text\": \"Volcanoes erupted, climates shifted, and the balance of life slowly began to change.\",\n\"image_prompt\": \"massive volcanic eruption illuminating fleeing dinosaurs in a smoky prehistoric landscape\",\n\"topic_focus\": \"environmental change\",\n\"audio_style\": \"dark and dramatic\"\n},\n{\n\"scene_id\": 14,\n\"voice_text\": \"Yet their legacy never truly disappeared, because their descendants still walk the Earth today.\",\n\"image_prompt\": \"cinematic transition from dinosaur silhouette morphing into modern birds flying through the sky\",\n\"topic_focus\": \"evolution to birds\",\n\"audio_style\": \"hopeful and inspiring\"\n},\n{\n\"scene_id\": 15,\n\"voice_text\": \"The age of dinosaurs may be gone, but their story continues to inspire our curiosity about Earth's ancient past.\",\n\"image_prompt\": \"epic cinematic sunrise over prehistoric mountains with dinosaur fossils glowing beneath golden light\",\n\"topic_focus\": \"final reflection\",\n\"audio_style\": \"epic and uplifting\"\n}\n]",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -2832,
+        976
+      ],
+      "id": "32dc6b76-74a5-4f6f-8b96-98b515d23484",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY",
+          "mode": "list",
+          "cachedResultName": "Faceless YT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1333209754,
+          "mode": "list",
+          "cachedResultName": "Sheet2",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit#gid=1333209754"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "to_use",
+              "lookupValue": "Final"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2624,
+        752
+      ],
+      "id": "b3012df0-0027-4970-8604-0018b86b64ad",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.json2video.com/v2/movies",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"template\": \"hh8QmJdtYSvJgAukA0RP\",\n  \"variables\": {\n    \"voiceModel\": \"azure\",\n    \"voiceID\": \"en-AU-NatashaNeural\",\n    \"audioURL\": \"{{ $json.Randomize_audio }}\",\n    \"introVideo\": \"{{ $json.intro_video }}\",\n    \"introText\": \"{{ $('Topics').item.json.caption }}\",\n    \"clips\": [\n      {\"scene_id\": 1, \"voiceText\": \"{{ $('Prompts').item.json.output[0].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[0].image_prompt }}\"},\n      {\"scene_id\": 2, \"voiceText\": \"{{ $('Prompts').item.json.output[1].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[1].image_prompt }}\"},\n      {\"scene_id\": 3, \"voiceText\": \"{{ $('Prompts').item.json.output[2].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[2].image_prompt }}\"},\n      {\"scene_id\": 4, \"voiceText\": \"{{ $('Prompts').item.json.output[3].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[3].image_prompt }}\"},\n      {\"scene_id\": 5, \"voiceText\": \"{{ $('Prompts').item.json.output[4].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[4].image_prompt }}\"},\n      {\"scene_id\": 6, \"voiceText\": \"{{ $('Prompts').item.json.output[5].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[5].image_prompt }}\"},\n      {\"scene_id\": 7, \"voiceText\": \"{{ $('Prompts').item.json.output[6].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[6].image_prompt }}\"},\n      {\"scene_id\": 8, \"voiceText\": \"{{ $('Prompts').item.json.output[7].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[7].image_prompt }}\"},\n      {\"scene_id\": 9, \"voiceText\": \"{{ $('Prompts').item.json.output[8].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[8].image_prompt }}\"},\n      {\"scene_id\": 10, \"voiceText\": \"{{ $('Prompts').item.json.output[9].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[9].image_prompt }}\"},\n      {\"scene_id\": 11, \"voiceText\": \"{{ $('Prompts').item.json.output[10].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[10].image_prompt }}\"},\n      {\"scene_id\": 12, \"voiceText\": \"{{ $('Prompts').item.json.output[11].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[11].image_prompt }}\"},\n      {\"scene_id\": 13, \"voiceText\": \"{{ $('Prompts').item.json.output[12].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[12].image_prompt }}\"},\n      {\"scene_id\": 14, \"voiceText\": \"{{ $('Prompts').item.json.output[13].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[13].image_prompt }}\"},\n      {\"scene_id\": 15, \"voiceText\": \"{{ $('Prompts').item.json.output[14].voice_text }}\", \"image_prompt\": \"{{ $('Prompts').item.json.output[14].image_prompt }}\"}\n    ],\n    \"imageModel\": \"flux-schnell\"\n  },\n  \"elements\": [\n    {\n      \"settings\": {\n        \"word-color\": \"#FFFFFF\",\n        \"shadow-offset\": 3,\n        \"shadow-color\": \"#000000\",\n        \"max-words-per-line\": 7,\n        \"font-size\": 60,\n        \"style\": \"classic\",\n        \"font-family\": \"Libre Baskerville\",\n        \"position\": \"center-center\",\n        \"all-caps\": false\n      },\n      \"language\": \"en\",\n      \"id\": \"qgyw6otz\",\n      \"type\": \"subtitles\"\n    },\n    {\n      \"volume\": 0.2,\n      \"duration\": -2,\n      \"fade-out\": 5,\n      \"src\": \"{{ audioURL }}\",\n      \"start\": 0,\n      \"id\": \"qpzlh8lj\",\n      \"type\": \"audio\"\n    }\n  ],\n  \"scenes\": [\n    {\n      \"duration\": 7,\n      \"id\": \"introScene\",\n      \"elements\": [\n        {\n          \"duration\": 7,\n          \"fade-out\": 2,\n          \"resize\": \"fill\",\n          \"id\": \"introVideo\",\n          \"type\": \"video\",\n          \"src\": \"{{ introVideo }}\",\n          \"correction\": {\"saturation\": 0.1}\n        },\n        {\n          \"duration\": 6,\n          \"settings\": {\n            \"font-color\": \"#000000\",\n            \"horizontal-position\": \"center\",\n            \"font-size\": \"100px\",\n            \"font-family\": \"Libre Baskerville\",\n            \"Line-height\": \"0.6\",\n            \"vertical-position\": \"center-center\",\n            \"opacity\": 0.7,\n            \"text-align\": \"center\"\n          },\n          \"width\": 1920,\n          \"style\": \"009\",\n          \"id\": \"introText\",\n          \"text\": \"{{ introText }}\",\n          \"type\": \"text\"\n        }\n      ]\n    },\n    {\n      \"duration\": 14,\n      \"id\": \"q869hfsa\",\n      \"iterate\": \"clips\",\n      \"elements\": [\n        {\n          \"fade-out\": 1,\n          \"fade-in\": 1,\n          \"resize\": \"fill\",\n          \"model\": \"{{ imageModel }}\",\n          \"zoom\": 5,\n          \"id\": \"qz3h49wg\",\n          \"type\": \"image\",\n          \"correction\": {\"saturation\": 0.1},\n          \"prompt\": \"{{ clip.image_prompt }}\"\n        },\n        {\n          \"voice\": \"{{ voiceID }}\",\n          \"volume\": 4,\n          \"cache\": false,\n          \"model\": \"{{ voiceModel }}\",\n          \"id\": \"q5acem12\",\n          \"text\": \"{{ clip.voiceText }}\",\n          \"type\": \"voice\"\n        }\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -2464,
+        752
+      ],
+      "id": "456ac7b7-c074-46bd-8d0a-9de316469427",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "DsJ16REE9GLlEm7t",
+          "name": "jsonvideo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY",
+          "mode": "list",
+          "cachedResultName": "Faceless YT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "production_status",
+              "lookupValue": "for production"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -3072,
+        752
+      ],
+      "id": "3ca1663e-bd97-40ef-986e-447c82b0c034",
+      "name": "Topics",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY",
+          "mode": "list",
+          "cachedResultName": "Faceless YT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "production_status": "in progress"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_status",
+              "displayName": "production_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -2928,
+        592
+      ],
+      "id": "6d7c6ad0-6467-427a-95f3-5346c8b16be8",
+      "name": "Mark In Progress",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Video title: {{ $('Topics').item.json.idea }}\nVideo Description: {{ $('Topics').item.json.caption }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a content generator for YouTube videos about dinosaurs.\n\nThe user will provide:\n- video_title (string)\n- video_description (string)\n\nYour task:\nCreate a structured storyboard in JSON array format for 15 sequential scenes.\n\nRules:\n1. Scenes 1–3 — INTRO (hook and setup)\n2. Scenes 4–11 — BUILDUP (educational journey with storytelling)\n3. Scenes 12–15 — CONCLUSION (summary, wrap-up, call-to-action)\n\nEach scene must include:\n- scene_id: integer (1 to 15)\n- voice_text: engaging narration text\n- image_prompt: detailed cinematic image generation prompt\n- topic_focus: short phrase describing the scene\n- audio_style: mood of the narration\n\nReturn ONLY a JSON array. No explanations.\n\nIncorporate: T-Rex, Brachiosaurus, Triceratops, Velociraptors, Mosasaurus."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -2928,
+        752
+      ],
+      "id": "e096b324-193c-4204-a775-3627eab1e2c1",
+      "name": "Prompts"
+    },
+    {
+      "parameters": {
+        "amount": 120
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -2304,
+        752
+      ],
+      "id": "def2b793-057f-4825-8f3a-b00c4db63c75",
+      "name": "Wait",
+      "webhookId": "88f5f928-dc5d-4c01-9fb8-1111c90e6e0f"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Initialise or increment the retry counter\nconst prev = $input.first().json;\nconst retryCount = (prev.retryCount || 0) + 1;\n\nreturn [{\n  json: {\n    ...prev,\n    retryCount\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2080,
+        848
+      ],
+      "id": "a3bdcb13-6384-4901-906c-4f3dfdd6237b",
+      "name": "Retry Counter"
+    },
+    {
+      "parameters": {
+        "url": "https://api.json2video.com/v2/movies",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "project",
+              "value": "={{ $('HTTP Request').item.json.project }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1856,
+        848
+      ],
+      "id": "11464900-9e2a-4875-b615-8003550a8d32",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "DsJ16REE9GLlEm7t",
+          "name": "jsonvideo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.movies[0].status }}",
+                    "rightValue": "done",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "5bb66041-53b1-4a0a-bc9a-70ceb232638c"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Done"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "running-and-under-limit",
+                    "leftValue": "={{ $json.movies[0].status}}",
+                    "rightValue": "running",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "running"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "cff8d3d2-a493-402e-8a01-1009342c1343",
+                    "leftValue": "={{ $json.movies[0].status}}",
+                    "rightValue": "error",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "error"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -1632,
+        848
+      ],
+      "id": "4bc615ff-1eb3-4fdd-9532-ffe76017d0c3",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "amount": 90
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1408,
+        1040
+      ],
+      "id": "77ec519f-194d-4eed-bc24-ff442ce2d378",
+      "name": "Wait1",
+      "webhookId": "d2fe4286-f113-4a4e-bba5-3dfea1fc8aaf"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY",
+          "mode": "list",
+          "cachedResultName": "Faceless YT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Topics').item.json.id }}",
+            "production_status": "error",
+            "error_log": "={{ $json.movies[0].status === 'error' ? ($json.movies[0].message || $json.movies[0].error || 'Unknown API error') : 'Timeout: exceeded 20 retries (~30 minutes)' }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_status",
+              "displayName": "production_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "error_log",
+              "displayName": "error_log",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1408,
+        752
+      ],
+      "id": "2de2902f-7934-4ca8-8e1f-afc438ea96d8",
+      "name": "Error log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY",
+          "mode": "list",
+          "cachedResultName": "Faceless YT",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1WN9u6HGN0S0A3b8kAkGWzBMoR6t180_PYFeBTiZFMhY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Topics').item.json.id }}",
+            "production_status": "done",
+            "final_output": "={{ $json.movies[0].url }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "production_status",
+              "displayName": "production_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "final_output",
+              "displayName": "final_output",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1408,
+        560
+      ],
+      "id": "fe6e5cb4-3e00-4cfd-badd-84b44fc5e175",
+      "name": "Add final video",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.final_output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -1184,
+        560
+      ],
+      "id": "2203bd06-14bc-4b43-8529-c3e765c386f9",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -2912,
+        1184
+      ],
+      "id": "5991eb8c-cad2-4e57-88ed-8acc8a036954",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "xEwKv6ihnFTFp5s6",
+          "name": "Visionboard"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Topics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prompts",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Prompts",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Topics": {
+      "main": [
+        [
+          {
+            "node": "Mark In Progress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark In Progress": {
+      "main": [
+        [
+          {
+            "node": "Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompts": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Retry Counter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retry Counter": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Add final video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Retry Counter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add final video": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4f69f339f0b295889f186fde9d5f42ac9e9207208e100a42553812d7a2a73ea7"
+  }
+}
