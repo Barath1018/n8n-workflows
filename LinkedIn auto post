@@ -1,0 +1,532 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1typd-aTocy3DdLLxmor6onBGMFDov7IILn8PDgk0whw",
+          "mode": "list",
+          "cachedResultName": "Social Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1typd-aTocy3DdLLxmor6onBGMFDov7IILn8PDgk0whw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1940679493,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1typd-aTocy3DdLLxmor6onBGMFDov7IILn8PDgk0whw/edit#gid=1940679493"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Status",
+              "lookupValue": "Not Published"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8011d859-56eb-4f35-8a96-2565813bf583",
+      "name": "Read Social Posts",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -1712,
+        1616
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1typd-aTocy3DdLLxmor6onBGMFDov7IILn8PDgk0whw",
+          "mode": "list",
+          "cachedResultName": "Social Posts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1typd-aTocy3DdLLxmor6onBGMFDov7IILn8PDgk0whw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1940679493,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1typd-aTocy3DdLLxmor6onBGMFDov7IILn8PDgk0whw/edit#gid=1940679493"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $('Read Social Posts').item.json.row_number }}",
+            "Status": "Published"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Post Title",
+              "displayName": "Post Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Image Url",
+              "displayName": "Image Url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "d3269b72-39cc-402d-9bd6-07e37b96a167",
+      "name": "Mark as Failed",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        -96,
+        1344
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "rwee26nV07OFQ8HZ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"post\": \"\",\n  \"imageprompt\":\"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -1328,
+        1824
+      ],
+      "id": "fb87d04b-391c-4231-a12a-84f85e07aedd",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "model": "gpt-image-1",
+        "prompt": "={{ $('Generate the post & image prompt').first().json.output.imageprompt }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -1760,
+        1296
+      ],
+      "id": "16888578-67cb-4bcf-b9ed-1ff0bb7deaee",
+      "name": "Generate an image",
+      "credentials": {
+        "openAiApi": {
+          "id": "3UUwVUBTWoGoDjMh",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json['Post Title'] }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are a professional content strategist for LinkedIn posts and AI-generated visuals.\n\nYour task is to generate two things based on a title provided by the user:\n\n---\n\n✍️ *1. LinkedIn Post*\n\nWrite a high-quality LinkedIn post using the title as the main theme. Follow this structure:\n\n- *Hook:* Start with a bold question, insight, or statistic to grab attention.\n- *Main Content:* Write 2–4 short paragraphs or bullet points with insights, tips, reflections, or a short story. Focus on professional value.\n- *CTA:* End with a call-to-action to engage the reader (ask a question or prompt them to comment).\n- *Hashtags:* Add 3 to 6 relevant, professional hashtags at the end (e.g., #AI #Automation #LinkedInGrowth).\n- *Emojis:* Use up to 5 relevant emojis placed naturally in the post (no overuse).\n\nTone: Friendly, insightful, and suitable for founders, solopreneurs, and professionals.\n\n---\n\n🖼️ *2. Image Prompt*\n\nThen, create an AI image generation prompt that reflects the theme of the title conceptually.\n\nGuidelines:\n- Use a metaphorical or symbolic visual representation of the post title\n- Describe the scene, setting, subject, lighting, and mood in a single sentence\n- Keep it professional and suitable for a LinkedIn-style visual\n- Do not include any text or logos in the image description\n\n---\n\n🎯 Output Format:\nReturn both in the following format:\n\n{\n  \"post\": \"\",\n  \"imageprompt\":\"\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -1488,
+        1616
+      ],
+      "id": "a60ec389-734c-4c50-985e-8ba2afe318ec",
+      "name": "Generate the post & image prompt"
+    },
+    {
+      "parameters": {
+        "person": "plNvN0k-V8",
+        "text": "={{ $('Generate the post & image prompt').item.json.output.post }}",
+        "shareMediaCategory": "IMAGE",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        1344
+      ],
+      "id": "0f1bcc68-b737-450c-a41b-159415c147e6",
+      "name": "Create a post",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "bWTTO42frLBf5q82",
+          "name": "LinkedIn account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "barath.senthil1602@gmail.com",
+        "subject": "🔍 Please Review Your LinkedIn Post",
+        "message": "=Hi,\n\nHere’s the auto-generated content based on your title:\n\nPost Title: {{ $('Read Social Posts').item.json['Post Title'] }}\n\nLinkedIn Post:\n{{ $json.output.post }}\n\nImage Prompt:\n{{ $json.output.imageprompt }}\n\nPlease review and click to approve or reject:\n✅ Approve Post\n❌ Reject Post\n\nThanks,\nYour AI Content Assistant",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double",
+            "disapproveLabel": "Reject"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1104,
+        1616
+      ],
+      "id": "00e50231-9e51-43ff-9a65-4f6e4121c5f0",
+      "name": "Send message and wait for response",
+      "webhookId": "ecfc487d-0958-4abe-85c3-2e5245d93a3d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "jmWgq8Z8mL3K11As",
+          "name": "1. Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d9383b04-f199-40a8-90b3-940da646a84d",
+              "leftValue": "={{ $json.data.approved }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -672,
+        1616
+      ],
+      "id": "c7958a28-466f-41bc-8291-7b53caa0ee6b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "Verify the post content ",
+        "height": 336,
+        "width": 640
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1184,
+        1520
+      ],
+      "typeVersion": 1,
+      "id": "3e5fdaf2-68b2-4aeb-b35f-5a85453d33ed",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-20b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        -1584,
+        1840
+      ],
+      "id": "d4a041bd-cc5c-42c9-94e2-d096416d2fb8",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "chZ7nGvm7Z58FbC0",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://router.huggingface.co/hf-inference/models/stabilityai/stable-diffusion-xl-base-1.0",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer your-api-key"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "image/png"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"inputs\": \"{{ $('Generate the post & image prompt').first().json.output.imageprompt }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -448,
+        1408
+      ],
+      "id": "030e150f-f709-4239-acb5-e91e7b4869e2",
+      "name": "Hugging face"
+    },
+    {
+      "parameters": {
+        "url": "=https://image.pollinations.ai/prompt/{{ $json.chatInput }}?nologo=true",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -1472,
+        1312
+      ],
+      "id": "e80b82c6-b4dc-4a7d-bf0c-f2d018029b0e",
+      "name": "Pollinations ai"
+    },
+    {
+      "parameters": {
+        "chatId": "=7641680640",
+        "text": "Check the Workflow",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -448,
+        1680
+      ],
+      "id": "6657e719-a855-4a7a-8473-72054903d682",
+      "name": "Send a text message",
+      "webhookId": "036e9dee-1999-46a7-bf80-fbd89300e4fb",
+      "credentials": {
+        "telegramApi": {
+          "id": "Z3heFDra60mHqwDS",
+          "name": "caren"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 16
+            }
+          ]
+        }
+      },
+      "id": "a1c75534-7ec8-452b-82bd-be4551000cfd",
+      "name": "Daily",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1920,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Image generators, you can use instead of Hugging face\n**Double click** to edit me. [Guide](https://docs.n8n.io/workflows/components/sticky-notes/)",
+        "height": 256,
+        "width": 560
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1824,
+        1200
+      ],
+      "typeVersion": 1,
+      "id": "b113a68c-75a1-4838-b8c2-140b0d1911f9",
+      "name": "Sticky Note1"
+    }
+  ],
+  "connections": {
+    "Read Social Posts": {
+      "main": [
+        [
+          {
+            "node": "Generate the post & image prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Generate the post & image prompt",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate the post & image prompt": {
+      "main": [
+        [
+          {
+            "node": "Send message and wait for response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a post": {
+      "main": [
+        [
+          {
+            "node": "Mark as Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send message and wait for response": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Hugging face",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate the post & image prompt",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hugging face": {
+      "main": [
+        [
+          {
+            "node": "Create a post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily": {
+      "main": [
+        [
+          {
+            "node": "Read Social Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4f69f339f0b295889f186fde9d5f42ac9e9207208e100a42553812d7a2a73ea7"
+  }
+}
