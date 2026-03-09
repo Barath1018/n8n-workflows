@@ -1,0 +1,519 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        544
+      ],
+      "id": "c2b65dae-3203-436b-8942-c236c3b256ca",
+      "name": "Google Gemini Chat Model1"
+    },
+    {
+      "parameters": {
+        "content": "# Part 3) Save & Notify\n✅ Saves video to Google Drive\n✅ Logs object + URL to Google Sheet\n✅ Sends Telegram notification with Drive link",
+        "height": 300,
+        "width": 1140,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        640
+      ],
+      "id": "490a0256-35e4-4df4-8d88-2ad3dd5fb30b",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# Part 2) Video Generation (HuggingFace - Free)\n⚠️ Response Format must be set to FILE in the HTTP node\n⚠️ Timeout set to 300000ms (5 mins)\n⚠️ x-wait-for-model header auto-handles model cold starts",
+        "height": 300,
+        "width": 1140,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        320
+      ],
+      "id": "2c6224e6-f5d8-4850-aafb-ac03a4caeb08",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Part 1) Idea Generation",
+        "height": 300,
+        "width": 1140,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5cacd980-b112-4eac-a97c-5483513885ae",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        800,
+        208
+      ],
+      "id": "1f4a22d2-f9a2-4a87-9af2-da2386372a14",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=🎬 *{{ $('Idea Agent').item.json.output.caption }}*\n\n✅ Video is ready!\n🔗 {{ $('Result').item.json['Video URL'] }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        528,
+        768
+      ],
+      "id": "f594e059-9022-46c4-bb82-8348ca075c5c",
+      "name": "Send to Telegram",
+      "webhookId": "e8dd42f3-d03b-4e25-95b8-6a9938a6fd6b"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QWDosmFQWGJiQDdNaMIz7ygCnZ1J8JhJcKDkC3SUqeQ",
+          "mode": "list",
+          "cachedResultName": "Glass Fruit ASMR",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QWDosmFQWGJiQDdNaMIz7ygCnZ1J8JhJcKDkC3SUqeQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QWDosmFQWGJiQDdNaMIz7ygCnZ1J8JhJcKDkC3SUqeQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Object": "={{ $('Idea Agent').item.json.output.object }}",
+            "URL": "={{ $('Result').item.json['Video URL'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Object",
+              "displayName": "Object",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        288,
+        768
+      ],
+      "id": "859295f5-5be4-42e5-88e8-39bf75ed16b4",
+      "name": "Append Object"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c66c7c13-57ca-4191-9af3-5ab306dfedfc",
+              "name": "Video URL",
+              "value": "=https://drive.google.com/file/d/{{ $json.id }}/view",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        848,
+        448
+      ],
+      "id": "224d19ea-951d-474f-8f5e-f6a2c2436650",
+      "name": "Result"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('Idea Agent').item.json.output.caption }}.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "MyDrive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "root",
+          "cachedResultName": "/ (Root)"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        640,
+        448
+      ],
+      "id": "8d7e7840-2614-40be-9a84-e9e801e57900",
+      "name": "Upload to Google Drive"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.segmind.com/v1/kling-text2video",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "SG_6d2748faf8fdde5d"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "inputs",
+              "value": "={{ JSON.stringify({ \"prompt\": $json.output, \"aspect_ratio\": \"9:16\", \"duration\": 5 }) }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        384,
+        448
+      ],
+      "id": "f6f22945-cf26-4d0c-9b2e-71031f1c9b29",
+      "name": "Generate Video"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output.object }}",
+        "options": {
+          "systemMessage": "=# Overview\nYou are an AI agent that specializes in generating text-to-video prompts optimized for ASMR-style videos. These videos must be 9:16 aspect ratio.\n\nYou will receive the name of a glass object. Your task is to generate a hyper-realistic, sensory-rich video prompt of that object being cut in a close-up ASMR scene.\n\n## Core Requirements:\n- The video must feel cinematic and photorealistic.\n- Scene is a static, close-up shot of a dark wooden cutting board and a large, heavy steel knife.\n- The object must retain some color — not fully transparent — to create visual contrast.\n- No humans visible. Only one hand holding the knife.\n- Four distinct ASMR sound layers: knife tap, slicing, thud, clink.\n\n## Format Output Like This:\n**Subject**: A hyper-detailed [glass object] resting on a dark wooden cutting board.  \n**Setting**: Static close-up, soft natural lighting, minimal background.  \n**Action**: A large steel knife slowly slices through the [glass object] with a deliberate, cinematic cut.  \n**Style**: Cinematic ASMR realism, photorealistic lighting and textures.  \n**Sound**: Four high-fidelity sound layers — knife contact, clean slice, wooden thud, glass clink. No other audio.  \n**Camera Motion**: Fixed camera with slight focus shifts.  \n**Composition**: Centered object, knife enters from edge.  \n**Ambiance**: Pin-drop silence around cutting sounds.  \n**Aspect Ratio**: 9:16\n\nOutput only the prompt text, nothing else."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        64,
+        448
+      ],
+      "id": "7cd139fd-a469-4400-9bfa-51f8addd01a4",
+      "name": "Prompt Agent"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"object\": {\n      \"type\": \"string\"\n    },\n    \"caption\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"object\", \"caption\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        992,
+        192
+      ],
+      "id": "1b7429a9-7e5d-4606-8461-1f563be988c7",
+      "name": "Object & Caption"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Objects: {{ $json.objects.join(\", \") }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Overview  \nYou are an AI agent that selects unique **fruits** for ASMR-style glass cutting videos.\n\n## Your Task  \nYou will receive a list of fruits that have already been used.  \nYour job is to generate **one new fruit** that is **not on that list**, and would look visually compelling if it were made of **glass** and cut with a knife in a close-up ASMR video.\n\n## Requirements\n- The fruit must **not repeat** any of the provided items.  \n- The fruit must have a **clear, recognizable shape** and be **physically feasible** to cut with a knife.  \n- Prioritize fruits that would look **aesthetic and interesting** with a translucent, colored glass texture.  \n- Do **not** explain or describe the fruit.\n\n## Output Format  \n{\n  \"object\": \"Glass [Object name]\",\n  \"caption\": \"Glass [Object name] ASMR\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        800,
+        64
+      ],
+      "id": "9cf77fad-dcb2-4423-ab09-548e484ca2e7",
+      "name": "Idea Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cf818c10-ad6d-4349-830f-393529a79d62",
+              "name": "objects",
+              "value": "=[\"{{ $json.data[0].Object }}\",\"{{ $json.data[1].Object }}\",\"{{ $json.data[2].Object }}\",\"{{ $json.data[3].Object }}\"]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        112
+      ],
+      "id": "8da301ce-eb84-4b51-8cc6-0c36970caa8a",
+      "name": "Set Object List"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        448,
+        112
+      ],
+      "id": "7d43d258-e646-4d19-a335-5caa723b3223",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QWDosmFQWGJiQDdNaMIz7ygCnZ1J8JhJcKDkC3SUqeQ",
+          "mode": "list",
+          "cachedResultName": "Glass Fruit ASMR",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QWDosmFQWGJiQDdNaMIz7ygCnZ1J8JhJcKDkC3SUqeQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QWDosmFQWGJiQDdNaMIz7ygCnZ1J8JhJcKDkC3SUqeQ/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        272,
+        112
+      ],
+      "id": "019be5ef-81a4-4d1a-968c-e8f6960cb064",
+      "name": "Get Past Objects"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        64,
+        112
+      ],
+      "id": "75061f61-b260-4029-b195-4c76983d5227",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "connections": {
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Prompt Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Idea Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Object": {
+      "main": [
+        [
+          {
+            "node": "Send to Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Result": {
+      "main": [
+        [
+          {
+            "node": "Append Object",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload to Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Video": {
+      "main": [
+        [
+          {
+            "node": "Upload to Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prompt Agent": {
+      "main": [
+        [
+          {
+            "node": "Generate Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Object & Caption": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Idea Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Idea Agent": {
+      "main": [
+        [
+          {
+            "node": "Prompt Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Object List": {
+      "main": [
+        [
+          {
+            "node": "Idea Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Set Object List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Past Objects": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Past Objects",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "1be44f77e7e9547750b00637d444b4645f449feb79010d7424e823ae65f547a8"
+  }
+}
